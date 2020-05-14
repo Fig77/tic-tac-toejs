@@ -32,6 +32,14 @@ const gameBoard = () => {
 		if(state.some((e => e == 12))) {
 			return 'Player two win';
 		}
+		return -1;
 	}
 	return { getBoard, setPosition, endCondition }
+}
+
+const gameFlow = () => {
+	const player_one = 1;
+	const player_two = 4;
+	let turn = 1;
+	let state = 1;
 }
