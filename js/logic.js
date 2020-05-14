@@ -1,4 +1,4 @@
-const gameBoard = () => {
+const gameBoard = (() => {
 	const board = [0,0,0,0,0,0,0,0,0];
 	const moves = 0;
 	const getBoard = () => {
@@ -33,13 +33,21 @@ const gameBoard = () => {
 			return 'Player two win';
 		}
 		return -1;
-	}
-	return { getBoard, setPosition, endCondition }
-}
+	};
 
-const gameFlow = () => {
+	const clear = () => board = [0,0,0,0,0,0,0,0,0];
+
+	return { getBoard, setPosition, endCondition, clear }
+})();
+
+const gameFlow = (() => {
 	const player_one = 1;
 	const player_two = 4;
 	let turn = 1;
-	let state = 1;
-}
+	
+	const startGame = () => {
+		
+	};
+
+	return { startGame }
+})();
