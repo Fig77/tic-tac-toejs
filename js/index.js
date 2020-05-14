@@ -91,7 +91,6 @@ const clearBoard = () => {
       el.removeChild(el.querySelector('.move'));
   });
 }
-
 document.querySelector('#start').addEventListener('click', function(e){
   e.preventDefault();
   clearMessage();
@@ -132,9 +131,11 @@ document.querySelector('#start').addEventListener('click', function(e){
           }
 
           document.querySelector('.container').insertAdjacentHTML('afterbegin', options());
-          
-
-        }
+          document.querySelector('#play-again').addEventListener('click', function(e) {
+            document.querySelector('.options').parentElement.removeChild(document.querySelector('.options'));
+            clearBoard();
+          });
+         }
         else {
           if(gameFlow.getTurn() == 1) {
             this.insertAdjacentHTML('afterbegin', circle());
