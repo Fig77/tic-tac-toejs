@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-	const board = [0,0,0,0,0,0,0,0,0];
+	let board = [0,0,0,0,0,0,0,0,0];
 	let moves = 0;
 	const getBoard = () => {
 		return board;
@@ -24,7 +24,8 @@ const gameBoard = (() => {
 
 	const endCondition = () => {
 		let status = state();
-		if(moves == 8) {
+		// console.log(moves);
+		if(moves == 9) {
 			return 0;
 		}
 		if(status.some((e => e == 3))) {
@@ -36,27 +37,34 @@ const gameBoard = (() => {
 		return -1;
 	};
 
-	const clear = () => board = [0,0,0,0,0,0,0,0,0];
+	const clear = () =>{
+		board = [0,0,0,0,0,0,0,0,0];
+		moves = 0;
+	};
 
 	return { getBoard, setPosition, endCondition, clear, validPosition }
 })();
 
 const gameFlow = (() => {
 	let turn = 1; // player 1 - player 2
+	let score = [0, 0];
 	const switch_turn = () => {
 		turn = (turn == 1 ? 4 : 1);
 	};
 	const getTurn = () => turn;
+	const getScore = () => score;
 	const game = (i) => {
-		console.log(getTurn());
+		// console.log(getTurn());
 		let state = gameBoard.validPosition(i-1);
 		if(state) {
 		 gameBoard.setPosition(i-1, turn);
 		 state = gameBoard.endCondition();
+		 if(state === 1) score[0] += 1;
+		 else if(state === 2) score[1] += 1;
 		 state != -1 ? gameBoard.clear() : switch_turn();
 		}
 		return state;
 	};
 
-	return { game, getTurn }
+	return { game, getTurn, getScore }
 })();

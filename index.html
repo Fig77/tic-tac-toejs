@@ -9,8 +9,21 @@
 </head>
 <body>
   <div class="container">
-    <div class="d-flex justify-content-center game">
-      <button id="start" class="btn btn-primary m-4">Start Playing</button>
+    <div class="message">
+
+    </div>
+    <div class="d-flex justify-content-center align-items-center flex-column game">
+      <form class="m-4" id='form-start'>
+        <div class="form-group">
+          <label for="player-1">Player 1 name:</label>
+          <input type="text" class="form-control" id="player-1" name="player-1">
+        </div>
+        <div class="form-group">
+          <label for="player-2">Player 2 name:</label>
+          <input type="text" class="form-control" id="player-2" name="player-2">
+        </div>
+        <button type="submit" id="start" class="btn btn-primary m-1">Start Playing</button>
+      </form>
     </div>
 
   </div>
