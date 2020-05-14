@@ -1,3 +1,4 @@
+/* eslint-disable no-undef, func-names */
 const board = (name1, name2) => `
 <div class="board m-4 row">
   <div class="position border col-4 p-3" data-id="1"></div>
@@ -28,7 +29,7 @@ const board = (name1, name2) => `
     </div>
   </div>
 </div>
-`
+`;
 
 const updateScore = (name1, name2) => {
   document.querySelector('.game-score').removeChild(document.querySelector('.score1'));
@@ -44,12 +45,12 @@ const updateScore = (name1, name2) => {
       <p>${gameFlow.getScore()[1]}</p>
     </div>
   `);
-}
+};
 
 const showTurn = (name1, name2) => {
   document.querySelector('.turn').removeChild(document.querySelector('.turn-message'));
   document.querySelector('.turn').insertAdjacentHTML('afterbegin', `<p class="mb-0 turn-message">${gameFlow.getTurn() === 1 ? `${name1} X turn` : `${name2} O turn`}</p>`);
-}
+};
 
 const circle = () => `
   <div class="move circle"></div>
@@ -74,80 +75,74 @@ const options = () => `
       <button id="play-again" class="btn-primary">Play Again</button>
     </div>
   </div>
-`
+`;
 
-const drawMessage = (text) =>  document.querySelector('.message').insertAdjacentHTML('afterbegin', message(text));
+const drawMessage = (text) => document.querySelector('.message').insertAdjacentHTML('afterbegin', message(text));
 
 const clearMessage = () => {
-  if(document.querySelector('.alert')){
+  if (document.querySelector('.alert')) {
     document.querySelector('.alert').parentElement.removeChild(document.querySelector('.alert'));
   }
-}
+};
 
 const clearBoard = () => {
   Array.from(document.querySelectorAll('.position'))
-  .map(el =>{ 
-    if(el.querySelector('.move'))
-      el.removeChild(el.querySelector('.move'));
-  });
-}
-document.querySelector('#start').addEventListener('click', function(e){
+    .map(el => {
+      if (el.querySelector('.move')) el.removeChild(el.querySelector('.move'));
+      return '';
+    });
+};
+
+document.querySelector('#start').addEventListener('click', (e) => {
   e.preventDefault();
   clearMessage();
 
-  let player1 = document.querySelector('#player-1').value;
-  let player2 = document.querySelector('#player-2').value;
+  const player1 = document.querySelector('#player-1').value;
+  const player2 = document.querySelector('#player-2').value;
 
-  if(player1.trim() && player2.trim()){
+  if (player1.trim() && player2.trim()) {
     document.querySelector('#form-start').parentElement.removeChild(document.querySelector('#form-start'));
-
     document.querySelector('.game').insertAdjacentHTML('afterbegin', board(player1, player2));
 
     Array.from(document.querySelectorAll('.position'))
-      .map(el => el.addEventListener('click', function(){
+      .map(el => el.addEventListener('click', function () {
         clearMessage();
-        let position = parseInt(this.dataset.id);
-        let state = gameFlow.game(position);
-        console.log(state);
-        if( state === false){
+        const position = parseInt(this.dataset.id, 10);
+        const state = gameFlow.game(position);
+        if (state === false) {
           drawMessage('Invalid Choice, choose a position that is empty.');
-        }
-        else if( state != -1){
-          if(gameFlow.getTurn() == 4) {
+        } else if (state !== -1) {
+          if (gameFlow.getTurn() === 4) {
             this.insertAdjacentHTML('afterbegin', circle());
-          }
-          else if(gameFlow.getTurn() == 1) {
+          } else if (gameFlow.getTurn() === 1) {
             this.insertAdjacentHTML('afterbegin', plus());
           }
           updateScore(player1, player2);
-          if(state === 0){
+          if (state === 0) {
             drawMessage('It is a tie.');
-          }
-          else if(state === 1){
+          } else if (state === 1) {
             drawMessage(`${player1} is the winner, congrats`);
-          }
-          else if(state === 2){
+          } else if (state === 2) {
             drawMessage(`${player2} is the winner, congrats`);
           }
 
           document.querySelector('.container').insertAdjacentHTML('afterbegin', options());
-          document.querySelector('#play-again').addEventListener('click', function(e) {
+          document.querySelector('#play-again').addEventListener('click', () => {
             document.querySelector('.options').parentElement.removeChild(document.querySelector('.options'));
             clearBoard();
           });
-         }
-        else {
-          if(gameFlow.getTurn() == 1) {
+        } else {
+          if (gameFlow.getTurn() === 1) {
             this.insertAdjacentHTML('afterbegin', circle());
-          }
-          else if(gameFlow.getTurn() == 4) {
+          } else if (gameFlow.getTurn() === 4) {
             this.insertAdjacentHTML('afterbegin', plus());
           }
           showTurn(player1, player2);
         }
-    }));
-  }
-  else{
+      }));
+  } else {
     document.querySelector('.message').insertAdjacentHTML('afterbegin', message('The name of players is required'));
   }
 });
+
+/* eslint-enable no-undef, func-names */
