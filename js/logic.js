@@ -1,9 +1,10 @@
 const gameBoard = (() => {
 	const board = [0,0,0,0,0,0,0,0,0];
-	const moves = 0;
+	let moves = 0;
 	const getBoard = () => {
 		return board;
 	}
+	const validPosition = (i) => board[i] == 0;
 	const setPosition = (i, v) => {
 		board[i] += v;
 		moves++;
@@ -22,32 +23,40 @@ const gameBoard = (() => {
 	}
 
 	const endCondition = () => {
-		let state = state();
+		let status = state();
 		if(moves == 8) {
-			return 'tie';
+			return 0;
 		}
-		if(state.some((e => e == 3))) {
-			return 'Player one win';
+		if(status.some((e => e == 3))) {
+			return 1;
 		}
-		if(state.some((e => e == 12))) {
-			return 'Player two win';
+		if(status.some((e => e == 12))) {
+			return 2;
 		}
 		return -1;
 	};
 
 	const clear = () => board = [0,0,0,0,0,0,0,0,0];
 
-	return { getBoard, setPosition, endCondition, clear }
+	return { getBoard, setPosition, endCondition, clear, validPosition }
 })();
 
 const gameFlow = (() => {
-	const player_one = 1;
-	const player_two = 4;
-	let turn = 1;
-	
-	const startGame = () => {
-		
+	let turn = 1; // player 1 - player 2
+	const switch_turn = () => {
+		turn = (turn == 1 ? 4 : 1);
+	};
+	const getTurn = () => turn;
+	const game = (i) => {
+		console.log(getTurn());
+		let state = gameBoard.validPosition(i);
+		if(state) {
+		 gameBoard.setPosition(i, turn);
+		 state = gameBoard.endCondition();
+		 state != -1 ? gameBoard.clear() : switch_turn();
+		}
+		return state;
 	};
 
-	return { startGame }
+	return { game, getTurn }
 })();

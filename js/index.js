@@ -26,7 +26,7 @@ const plus = () => `
     <div class="h"></div>
     <div class="v"></div>
   </div>
-`
+`;
 
 
 document.querySelector('#start').addEventListener('click', function(){
@@ -34,11 +34,21 @@ document.querySelector('#start').addEventListener('click', function(){
 
   document.querySelector('.game').insertAdjacentHTML('afterbegin', board());
 
-
   Array.from(document.querySelectorAll('.position'))
     .map(el => el.addEventListener('click', function(){
-      console.log(this.dataset.id);
+      let position = parseInt(this.dataset.id);
+      let state = gameFlow.game(position);
+      if( state == false){
+      }
+      else {
+        if(gameFlow.getTurn() == 1) {
 
+          this.insertAdjacentHTML('afterbegin', circle());
+        }
+        else {
+          this.insertAdjacentHTML('afterbegin', plus());
+        }
+      }
   }));
 
 });
