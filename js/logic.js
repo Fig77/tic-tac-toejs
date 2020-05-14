@@ -22,10 +22,16 @@ const gameBoard = () => {
 	}
 
 	const endCondition = () => {
+		let state = state();
 		if(moves == 8) {
 			return 'tie';
 		}
-		// 1 - 4
-		if()
+		if(state.some((e => e == 3))) {
+			return 'Player one win';
+		}
+		if(state.some((e => e == 12))) {
+			return 'Player two win';
+		}
 	}
+	return { getBoard, setPosition, endCondition }
 }
