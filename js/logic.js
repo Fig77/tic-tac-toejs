@@ -49,9 +49,9 @@ const gameFlow = (() => {
 	const getTurn = () => turn;
 	const game = (i) => {
 		console.log(getTurn());
-		let state = gameBoard.validPosition(i);
+		let state = gameBoard.validPosition(i-1);
 		if(state) {
-		 gameBoard.setPosition(i, turn);
+		 gameBoard.setPosition(i-1, turn);
 		 state = gameBoard.endCondition();
 		 state != -1 ? gameBoard.clear() : switch_turn();
 		}

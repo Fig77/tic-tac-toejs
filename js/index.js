@@ -42,7 +42,6 @@ document.querySelector('#start').addEventListener('click', function(){
       }
       else {
         if(gameFlow.getTurn() == 1) {
-
           this.insertAdjacentHTML('afterbegin', circle());
         }
         else {
