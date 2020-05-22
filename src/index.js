@@ -1,4 +1,9 @@
-/* eslint-disable no-undef, func-names */
+/* eslint-disable func-names */
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
+import './main.css';
+import gameFlow from './gameFlow';
+
 const board = (name1, name2) => `
 <div class="board m-4 row">
   <div class="position border col-4 p-3" data-id="1"></div>
