@@ -22,7 +22,6 @@ const gameBoard = (() => {
 
   const endCondition = () => {
     const status = state();
-    // console.log(moves);
     if (moves === 9) {
       return 0;
     }
