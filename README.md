@@ -13,6 +13,8 @@ If you want to test and use this project, you need to do:
 
 after that you need to run the bundler
 * `$ npm install`
+If you want to run tests, run this command:
+* `$ npm run test`
 
 and open your files with live server or similar
 
