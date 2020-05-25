@@ -4,7 +4,9 @@
   "description": "This a tic tac toe game using javascript.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,19 @@
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.9.6",
+    "babel": "^6.23.0",
+    "bootstrap": "^4.5.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0"
   }
 }

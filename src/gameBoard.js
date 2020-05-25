@@ -22,7 +22,6 @@ const gameBoard = (() => {
 
   const endCondition = () => {
     const status = state();
-    // console.log(moves);
     if (moves === 9) {
       return 0;
     }
@@ -44,33 +43,5 @@ const gameBoard = (() => {
     getBoard, setPosition, endCondition, clear, validPosition,
   };
 })();
-/* eslint-disable no-unused-vars */
-const gameFlow = (() => {
-  let turn = 1; // player 1 - player 2
-  const score = [0, 0];
-  const switchTurn = () => {
-    turn = (turn === 1 ? 4 : 1);
-  };
-  const getTurn = () => turn;
-  const getScore = () => score;
-  const game = (i) => {
-    // console.log(getTurn());
-    let state = gameBoard.validPosition(i - 1);
-    if (state) {
-      gameBoard.setPosition(i - 1, turn);
-      state = gameBoard.endCondition();
-      if (state === 1) score[0] += 1;
-      else if (state === 2) score[1] += 1;
-      if (state !== -1) {
-        gameBoard.clear();
-      } else {
-        switchTurn();
-      }
-    }
-    return state;
-  };
 
-  return { game, getTurn, getScore };
-})();
-
-/* eslint-enable no-unused-vars */
+export default gameBoard;
